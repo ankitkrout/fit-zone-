@@ -237,7 +237,7 @@ export default function Members() {
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="bg-darkCard border border-darkBorder rounded-2xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
+              className="bg-darkCard border border-darkBorder rounded-2xl p-4 md:p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between mb-6">

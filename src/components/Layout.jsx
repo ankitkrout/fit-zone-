@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '../context/AuthContext'
 import Navbar from './Navbar'
 import DashboardSidebar from './DashboardSidebar'
+import { Menu } from 'lucide-react'
 
 export default function Layout({ isDashboard = false }) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
@@ -14,6 +15,19 @@ export default function Layout({ isDashboard = false }) {
     <div className="min-h-screen bg-dark">
       {/* Show Navbar only on public pages */}
       {!isDashboard && <Navbar />}
+
+      {/* Dashboard Navbar with Hamburger for Mobile */}
+      {isDashboard && (
+        <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-darkLight border-b border-darkBorder z-30 flex items-center px-4">
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="p-2 text-white hover:bg-darkBorder rounded-lg transition"
+          >
+            <Menu size={24} />
+          </button>
+          <span className="ml-3 text-white font-semibold">FitZone</span>
+        </div>
+      )}
 
       <div className={`flex ${isDashboard ? 'pt-0' : ''}`}>
         {/* Dashboard Sidebar */}
@@ -28,9 +42,7 @@ export default function Layout({ isDashboard = false }) {
         <main 
           className={`flex-1 min-h-screen transition-all duration-300 ${
             isDashboard 
-              ? sidebarOpen 
-                ? 'ml-64' 
-                : 'ml-16' 
+              ? 'lg:ml-64 ml-0 pt-16 lg:pt-0' 
               : ''
           }`}
         >
